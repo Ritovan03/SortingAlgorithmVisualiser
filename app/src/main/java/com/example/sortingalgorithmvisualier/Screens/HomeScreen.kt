@@ -22,15 +22,18 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -76,11 +79,11 @@ fun HomeScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(16.dp))
-            SortOption(navController = navController, algorithmName = "Bubble", screenname = "bubbleSort", complexity = "n\u00B2")
-            SortOption(navController = navController, algorithmName = "Insertion", screenname = "insertionSort", complexity = "n\u00B2")
-            SortOption(navController = navController, algorithmName = "Merge", screenname = "mergeSort", complexity = "nlogn")
-            SortOption(navController = navController, algorithmName = "Quick", screenname = "quickSort", complexity = "nlogn")
-            SortOption(navController = navController, algorithmName = "Selection", screenname = "selectionSort", complexity = "n\u00B2")
+            SortOption(navController = navController, algorithmName = "Bubble", screenname = "bubbleSort", complexity = "n\u00B2",image = "bubble")
+            SortOption(navController = navController, algorithmName = "Insertion", screenname = "insertionSort", complexity = "n\u00B2", image = "insertion")
+            SortOption(navController = navController, algorithmName = "Merge", screenname = "mergeSort", complexity = "nlogn", image = "merge")
+            SortOption(navController = navController, algorithmName = "Quick", screenname = "quickSort", complexity = "nlogn", image = "quick")
+            SortOption(navController = navController, algorithmName = "Selection", screenname = "selectionSort", complexity = "n\u00B2", image = "selection")
         }
     }
 }
@@ -89,58 +92,58 @@ fun HomeScreen(navController: NavController) {
 fun SortOption(
     navController: NavController,
     algorithmName: String,
-    complexity:String,
-    screenname: String
+    complexity: String,
+    screenname: String,
+    image: String
 ) {
-    Row(
+    val context = LocalContext.current
+    val imageResId = remember(image) {
+        context.resources.getIdentifier(image, "drawable", context.packageName)
+    }
+
+    Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp) // Match the height to the increased image size
-            .clickable {
-                navController.navigate("$screenname")
-            }
+            .height(200.dp)  // Increased overall height
+            .clickable { navController.navigate(screenname) }
             .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
+        shape = RoundedCornerShape(16.dp),
+        shadowElevation = 8.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.dummy),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
+        Row(
             modifier = Modifier
-                .size(200.dp) // Slightly larger image size
-                .background(color = Color.Transparent)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .padding(top = 22.dp),
-
-            verticalArrangement = Arrangement.Top, // Center contents vertically within the Column
-            horizontalAlignment = Alignment.CenterHorizontally // Center contents horizontally within the Column
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = algorithmName,
-                modifier = Modifier.fillMaxWidth(),
-                fontSize = 26.sp,
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold
+            Image(
+                painter = painterResource(id = imageResId),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier
+                    .size(160.dp)  // Increased image size
+                    .clip(RoundedCornerShape(12.dp))
             )
-            Spacer(modifier = Modifier.height(16.dp)) // Adjusted spacing
-            Text(
-                text = "O($complexity)",
-                modifier = Modifier.fillMaxWidth(),
-                fontSize = 24.sp,
-                textAlign = TextAlign.Center
-            )
+
+            Spacer(modifier = Modifier.width(24.dp))  // Increased spacing
+
+            Column(
+                modifier = Modifier.fillMaxHeight(),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = algorithmName,
+                    fontSize = 24.sp,  // Increased font size
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 38.sp
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    text = "O($complexity)",
+                    fontSize = 28.sp,  // Increased font size
+                    lineHeight = 34.sp
+                )
+            }
         }
-       Divider(
-            color = colorResource(id = R.color.topicon), // This is a tan color, adjust as needed
-            thickness = 2.dp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(6.dp)
-        )
     }
 }

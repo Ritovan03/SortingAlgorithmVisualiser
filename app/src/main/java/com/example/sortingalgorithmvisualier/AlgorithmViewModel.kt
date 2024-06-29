@@ -21,7 +21,7 @@ class AlgorithmViewModel(
 
     val isPlaying = mutableStateOf(false)
     val onSortingFinished = mutableStateOf(false)
-    private var delay = 50L
+    private var delay = 150L
     private var pause = false
     private var next = 1
     private var previous = 0
