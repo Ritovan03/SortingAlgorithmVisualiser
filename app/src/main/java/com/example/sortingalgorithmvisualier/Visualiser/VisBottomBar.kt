@@ -1,7 +1,9 @@
 package com.example.sortingalgorithmvisualier.Visualiser
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,11 +15,12 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+
 
 @Composable
 fun VisBottomBar(
@@ -40,43 +43,76 @@ fun VisBottomBar(
         ){
             IconButton(onClick = slowDownClick)
             {
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowLeft,
-                    contentDescription = "Slow Down",
-                    tint = Color.Black
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowLeft,
+                        contentDescription = "Slow Down",
+                        tint = Color.Black
+                    )
+                    //Text(text = "Slow Down")
+                }
             }
             IconButton(onClick = playPauseClick)
             {
-                Icon(
-                    imageVector = if(!isPlaying) Icons.Default.PlayArrow else Icons.Default.Close,
-                    contentDescription = "Play/Pause",
-                    tint = Color.Black
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ){
+                    Icon(
+                        imageVector = if(!isPlaying) Icons.Default.PlayArrow else Icons.Default.Close,
+                        contentDescription = "Play/Pause",
+                        tint = Color.Black
+                    )
+                    //Text(text = if(!isPlaying) "Play" else "Pause")
+                }
             }
             IconButton(onClick = speedUpClick)
             {
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Speed Up",
-                    tint = Color.Black
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowRight,
+                        contentDescription = "Speed Up",
+                        tint = Color.Black
+                    )
+                    //Text(text = "Speed Up")
+                }
             }
             IconButton(onClick = previousClick)
             {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Previous step",
-                    tint = Color.Black
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Previous step",
+                        tint = Color.Black
+                    )
+
+                   // Text(text = "Previous")
+                }
+
             }
             IconButton(onClick = nextClick)
             {
-                Icon(
-                    imageVector = Icons.Default.ArrowForward,
-                    contentDescription = "Next Step",
-                    tint = Color.Black
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowForward,
+                        contentDescription = "Next Step",
+                        tint = Color.Black
+                    )
+
+                    //Text(text = "Next")
+                }
             }
         }
     }

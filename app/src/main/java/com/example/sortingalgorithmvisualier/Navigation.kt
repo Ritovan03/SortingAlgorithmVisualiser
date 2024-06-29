@@ -6,7 +6,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sortingalgorithmvisualier.Algorithm.BubbleSort
+import com.example.sortingalgorithmvisualier.Algorithm.InsertionSort
 import com.example.sortingalgorithmvisualier.Algorithm.MergeSort
+import com.example.sortingalgorithmvisualier.Algorithm.QuickSort
+import com.example.sortingalgorithmvisualier.Algorithm.SelectionSort
 import com.example.sortingalgorithmvisualier.Screens.AlgorithmInfoScreen
 import com.example.sortingalgorithmvisualier.Screens.HomeScreen
 
@@ -22,11 +25,29 @@ fun AppNavHost(navController: NavHostController) {
             )
             AlgorithmInfoScreen(navController, viewModel, "Bubble Sort")
         }
-        composable("insertionSort") {
+        composable("mergeSort") {
             val viewModel: AlgorithmViewModel = viewModel(
                 factory = AlgorithmViewModelProvider(MergeSort())
             )
             AlgorithmInfoScreen(navController, viewModel, "Merge Sort")
+        }
+        composable("quickSort") {
+            val viewModel: AlgorithmViewModel = viewModel(
+                factory = AlgorithmViewModelProvider(QuickSort())
+            )
+            AlgorithmInfoScreen(navController, viewModel, "Quick Sort")
+        }
+        composable("selectionSort") {
+            val viewModel: AlgorithmViewModel = viewModel(
+                factory = AlgorithmViewModelProvider(SelectionSort())
+            )
+            AlgorithmInfoScreen(navController, viewModel, "Selection Sort")
+        }
+        composable("insertionSort") {
+            val viewModel: AlgorithmViewModel = viewModel(
+                factory = AlgorithmViewModelProvider(InsertionSort())
+            )
+            AlgorithmInfoScreen(navController, viewModel, "Insertion Sort")
         }
         // Add more routes for other algorithms as needed
     }

@@ -15,8 +15,7 @@ class AlgorithmViewModel(
             34, 215, 45, 678, 320, 199, 540, 105, 688, 299, 432, 355,
             623, 207, 89, 580, 421, 310, 234, 576, 199,
             472, 589, 673, 298, 125, 401, 678, 253, 525, 482, 605, 370,
-            290, 346, 512, 399, 634, 277, 580, 450, 631, 380, 320, 295,
-            260, 479, 660, 520, 430, 67, 75, 28, 54, 91
+            290, 346, 512, 399, 634
         )
     )
 
@@ -71,13 +70,13 @@ class AlgorithmViewModel(
     private var sortingState = 0
     private fun play() = viewModelScope.launch {
         pause = false
-        for (i in 0 until sortedArrayLevels.size) {
+        for (i in sortingState until sortedArrayLevels.size) {
             if (!pause) {
                 delay(delay)
                 arr.value = sortedArrayLevels[i].toIntArray()
             } else {
                 sortingState = i
-                next = i + 1
+                next = i +1
                 previous = i
                 return@launch
             }
@@ -106,13 +105,14 @@ class AlgorithmViewModel(
     }
 
     private fun speedUp() {
-        if (delay >=10L) {
+        if (delay >=30L) {
             delay -=10
         }
     }
 
     private fun slowDown() {
-        delay += 50
+
+        delay+=20
 
     }
 }

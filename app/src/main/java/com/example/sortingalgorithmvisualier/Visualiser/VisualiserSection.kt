@@ -14,7 +14,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.example.sortingalgorithmvisualier.R
 
 @Composable
 fun VisualiserSection(
@@ -25,7 +27,7 @@ fun VisualiserSection(
         modifier = modifier
             .padding(top = 14.dp)
     ) {
-        val maxHeight = maxHeight-75.dp
+        val maxHeight = maxHeight-125.dp
         val itemWidth = remember {
             maxWidth/arr.size - 4.dp
         }
@@ -33,16 +35,16 @@ fun VisualiserSection(
 
         Row(
             modifier = Modifier.fillMaxWidth()
-                .padding(start = 8.dp, end = 8.dp,top = 120.dp),
+                .padding(start = 8.dp, end = 8.dp,top = 48.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
             arr.forEach {
                 Box(
                     modifier = Modifier
-                        .height(if(it.dp>maxHeight) maxHeight else it.dp)
+                        .height(if(it.dp>maxHeight) maxHeight else (it.dp - 25.dp))
                         .width(itemWidth)
-                        .background(Color.Cyan)
+                        .background(color = colorResource(id = R.color.topicon))
                 )
             }
         }
