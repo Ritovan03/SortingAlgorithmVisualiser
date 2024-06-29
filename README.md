@@ -26,10 +26,6 @@ This Android app, built with Jetpack Compose and MVVM architecture, brings sorti
 2. Open in Android Studio
 3. Build and run on your device or emulator
 
-### 📸 Screenshots
-
-[Insert eye-catching screenshots here]
-
 ### 🎮 How to Use
 
 1. 🔽 Select a sorting algorithm
